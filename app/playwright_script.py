@@ -1,10 +1,10 @@
 from playwright.sync_api import sync_playwright
-from config.settings import SERVICE_VALUE, USER, PASSWORD, CLIENT_ID, SERVICE_VALUE
+from config.settings import USER, PASSWORD, CLIENT_ID, SERVICE_VALUE
 import os
 
 def gerar_nota():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
 
@@ -47,6 +47,7 @@ def gerar_nota():
 
         download = download_info.value
 
+        os.makedirs("notas", exist_ok=True)
         file_path = os.path.join("notas", download.suggested_filename)
         download.save_as(file_path)
 

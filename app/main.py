@@ -1,5 +1,5 @@
-from .playwright_script import gerar_nota
-from .s3_upload import upload_to_s3
+from app.playwright_script import gerar_nota
+from app.s3_upload import upload_to_s3
 
 def main():
     file_path = gerar_nota()
